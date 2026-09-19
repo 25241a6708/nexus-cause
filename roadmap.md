@@ -4,4 +4,4 @@
 - [x] Add the urgent mission card and fulfillment progress
 - [x] Add the interactive Hyderabad impact map with detail popups
 - [x] Add the live activity sidebar
-- [ ] Verify desktop and mobile presentation
+- [x] Verify desktop and mobile presentation
