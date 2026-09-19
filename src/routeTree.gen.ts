@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ImpactMapRouteImport } from './routes/impact-map'
+import { Route as LeaderboardRouteImport } from './routes/leaderboard'
 import { Route as MissionsRouteImport } from './routes/missions'
 
 const IndexRoute = IndexRouteImport.update({
@@ -23,6 +24,11 @@ const ImpactMapRoute = ImpactMapRouteImport.update({
   path: '/impact-map',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LeaderboardRoute = LeaderboardRouteImport.update({
+  id: '/leaderboard',
+  path: '/leaderboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MissionsRoute = MissionsRouteImport.update({
   id: '/missions',
   path: '/missions',
@@ -32,30 +38,34 @@ const MissionsRoute = MissionsRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/impact-map': typeof ImpactMapRoute
+  '/leaderboard': typeof LeaderboardRoute
   '/missions': typeof MissionsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/impact-map': typeof ImpactMapRoute
+  '/leaderboard': typeof LeaderboardRoute
   '/missions': typeof MissionsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/impact-map': typeof ImpactMapRoute
+  '/leaderboard': typeof LeaderboardRoute
   '/missions': typeof MissionsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/impact-map' | '/missions'
+  fullPaths: '/' | '/impact-map' | '/leaderboard' | '/missions'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/impact-map' | '/missions'
-  id: '__root__' | '/' | '/impact-map' | '/missions'
+  to: '/' | '/impact-map' | '/leaderboard' | '/missions'
+  id: '__root__' | '/' | '/impact-map' | '/leaderboard' | '/missions'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ImpactMapRoute: typeof ImpactMapRoute
+  LeaderboardRoute: typeof LeaderboardRoute
   MissionsRoute: typeof MissionsRoute
 }
 
@@ -75,6 +85,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ImpactMapRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/leaderboard': {
+      id: '/leaderboard'
+      path: '/leaderboard'
+      fullPath: '/leaderboard'
+      preLoaderRoute: typeof LeaderboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/missions': {
       id: '/missions'
       path: '/missions'
@@ -88,6 +105,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ImpactMapRoute: ImpactMapRoute,
+  LeaderboardRoute: LeaderboardRoute,
   MissionsRoute: MissionsRoute,
 }
 export const routeTree = rootRouteImport
