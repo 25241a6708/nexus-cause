@@ -11,6 +11,10 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { SiteHeader } from "@/components/SiteHeader";
+import { DemoControls } from "@/components/DemoControls";
+import { MatchEngineProvider } from "@/components/MatchEngine";
+import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
   return (
@@ -121,8 +125,15 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <MatchEngineProvider>
+        <div className="min-h-screen bg-background text-foreground">
+          <SiteHeader />
+          {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+          <Outlet />
+          <DemoControls />
+          <Toaster richColors position="top-right" />
+        </div>
+      </MatchEngineProvider>
     </QueryClientProvider>
   );
 }
