@@ -28,7 +28,7 @@ const podiumStyle = [
 function LeaderboardPage() {
   const [filter, setFilter] = useState<(typeof filters)[number]>("All");
   const rows = useMemo(() => (filter === "All" ? contributors : contributors.filter((c) => c.category === filter)), [filter]);
-  const podium = [contributors[1], contributors[0], contributors[2]];
+  const podium = [contributors[1]!, contributors[0]!, contributors[2]!];
 
   return (
     <main className="grid-surface px-4 py-8 lg:px-8 lg:py-10">
@@ -38,7 +38,7 @@ function LeaderboardPage() {
 
         <div className="mt-8 grid gap-5 lg:grid-cols-3 lg:items-end">
           {podium.map((c) => {
-            const style = podiumStyle[c.rank - 1];
+            const style = podiumStyle[c.rank - 1]!;
             const Icon = style.icon;
             return (
               <div key={c.name} className={`rounded-lg border-2 ${style.ring} bg-card p-6 text-center shadow-sm ${style.lift}`}>
